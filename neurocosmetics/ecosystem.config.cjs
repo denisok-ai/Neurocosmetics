@@ -11,7 +11,7 @@ module.exports = {
     {
       name: "neurocosmetics",
       script: path.join(__dirname, "node_modules/.bin/next"),
-      args: "dev",
+      args: "dev -H 0.0.0.0",
       cwd: __dirname,
       env: {
         NODE_ENV: "development",
