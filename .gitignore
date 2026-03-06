@@ -1,0 +1,34 @@
+# Dependencies
+node_modules/
+neurocosmetics/node_modules/
+
+# Next.js
+neurocosmetics/.next/
+neurocosmetics/out/
+
+# Env (sensitive)
+.env
+.env.local
+.env*.local
+
+# Build / cache
+*.tsbuildinfo
+neurocosmetics/next-env.d.ts
+
+# Debug / logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Vercel
+.vercel
+
+# IDE / OS
+.DS_Store
+*.pem
+
+# Testing
+neurocosmetics/coverage/
+neurocosmetics/playwright-report/
+neurocosmetics/test-results/

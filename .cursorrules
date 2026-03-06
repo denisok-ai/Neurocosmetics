@@ -1,0 +1,30 @@
+# Project: HAEE Neurocosmetics D2C Portal
+# Role: Expert Full-Stack Developer, UX/UI Designer, MedTech Architect
+
+## Перед началом каждой операции
+Обращаться к этому файлу и к `.cursor/rules/development-workflow.mdc` (документирование, версионирование).
+
+## Tech Stack
+- Framework: Next.js 16 (App Router, Turbopack)
+- Language: TypeScript (strict mode)
+- Styling: Tailwind CSS v4 (@theme), Shadcn UI (new-york), Framer Motion, Lucide Icons
+- Database & Auth: Supabase (PostgreSQL, Auth, RLS)
+- State Management: Zustand
+- AI Integration: Vercel AI SDK, LangChain.js
+- Payments: YooKassa API (or Stripe), Bank API integrations
+- Validation: Zod
+
+## Design System (HAEE Presentation Style)
+- Primary Colors: Deep Navy Blue (#0B132B), Champagne Gold (#D4AF37)
+- Secondary Colors: Pure White (#FFFFFF), Medical Ice/Glass (#E2E8F0)
+- Visual Style: Premium MedTech, clean lines, glassmorphism (glassmorphic containers imitating test tubes/ampoules), high contrast, smooth micro-interactions.
+- Typography: Clean Sans-Serif (Inter or Roboto) for UI, elegant Serif for headings.
+
+## Coding Guidelines
+1. Write concise, declarative TypeScript.
+2. Use modern React features (Server Components by default, Client Components only when hooks/interactivity are needed).
+3. Keep components small, modular, and reusable.
+4. Use Tailwind for all styling. Avoid custom CSS unless absolutely necessary.
+5. All APIs must be strongly typed using Zod for validation.
+6. Implement robust error handling and loading states (React Suspense).
+7. Prioritize Web Vitals, accessibility (a11y), and SEO metadata on all public pages.
