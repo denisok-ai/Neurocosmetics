@@ -1,0 +1,102 @@
+nohup: ignoring input
+
+> neurocosmetics@0.6.0 build
+> next build
+
+▲ Next.js 16.1.6 (Turbopack)
+- Environments: .env.local
+
+⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+  Creating an optimized production build ...
+✓ Compiled successfully in 9.0s
+  Running TypeScript ...
+  Collecting page data using 11 workers ...
+  Generating static pages using 11 workers (0/36) ...
+⚠ Unsupported metadata viewport is configured in metadata export in /_not-found. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+⚠ Unsupported metadata viewport is configured in metadata export in /dashboard/manager. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+  Generating static pages using 11 workers (9/36) 
+⚠ Unsupported metadata viewport is configured in metadata export in /dashboard/admin/crm. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+  Generating static pages using 11 workers (18/36) 
+⚠ Unsupported metadata viewport is configured in metadata export in /dashboard/manager/leads. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+⚠ Unsupported metadata viewport is configured in metadata export in /dashboard/admin/analytics. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+⚠ Unsupported metadata viewport is configured in metadata export in /dashboard/admin/llm-settings. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+⚠ Unsupported metadata viewport is configured in metadata export in /dashboard/admin/audit. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+⚠ Unsupported metadata viewport is configured in metadata export in /shop/cart. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+⚠ Unsupported metadata viewport is configured in metadata export in /dashboard/profile. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+  Generating static pages using 11 workers (27/36) 
+⚠ Unsupported metadata viewport is configured in metadata export in /dashboard. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+⚠ Unsupported metadata viewport is configured in metadata export in /b2b. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+⚠ Unsupported metadata viewport is configured in metadata export in /. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+⚠ Unsupported metadata viewport is configured in metadata export in /debug. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+⚠ Unsupported metadata viewport is configured in metadata export in /science. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+⚠ Unsupported metadata viewport is configured in metadata export in /dashboard/orders. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+⚠ Unsupported metadata viewport is configured in metadata export in /shop. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+✓ Generating static pages using 11 workers (36/36) in 438.6ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ƒ /api/ai/prompts
+├ ƒ /api/audit
+├ ƒ /api/b2b/leads
+├ ƒ /api/chat
+├ ƒ /api/chat/b2b
+├ ƒ /api/chat/care
+├ ƒ /api/debug/login
+├ ƒ /api/debug/seed
+├ ƒ /api/health
+├ ƒ /api/orders
+├ ƒ /api/orders/[id]/status
+├ ƒ /api/payments/confirm
+├ ƒ /api/payments/create
+├ ƒ /api/payments/webhook
+├ ƒ /api/products
+├ ƒ /api/profiles
+├ ƒ /api/rag/seed
+├ ƒ /auth/callback
+├ ○ /b2b
+├ ƒ /dashboard
+├ ƒ /dashboard/admin/analytics
+├ ƒ /dashboard/admin/audit
+├ ƒ /dashboard/admin/crm
+├ ƒ /dashboard/admin/llm-settings
+├ ƒ /dashboard/manager
+├ ƒ /dashboard/manager/leads
+├ ƒ /dashboard/orders
+├ ƒ /dashboard/orders/[id]
+├ ƒ /dashboard/profile
+├ ○ /debug
+├ ƒ /login
+├ ƒ /register
+├ ○ /robots.txt
+├ ○ /science
+├ ○ /shop
+├ ƒ /shop/[id]
+├ ○ /shop/cart
+├ ƒ /shop/checkout
+├ ƒ /shop/checkout/confirm
+└ ○ /sitemap.xml
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

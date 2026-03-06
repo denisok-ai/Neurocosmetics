@@ -4,12 +4,14 @@
  * @created 2025-03-06
  */
 
+const path = require("path");
+
 module.exports = {
   apps: [
     {
       name: "neurocosmetics",
-      script: "npm",
-      args: "run dev",
+      script: path.join(__dirname, "node_modules/.bin/next"),
+      args: "dev",
       cwd: __dirname,
       env: {
         NODE_ENV: "development",
