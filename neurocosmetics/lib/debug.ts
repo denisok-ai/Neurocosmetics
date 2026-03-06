@@ -12,6 +12,13 @@ const DEBUG_MODE_ENV = "NEXT_PUBLIC_DEBUG_MODE";
 const DEBUG_MODE_SERVER = "DEBUG_MODE";
 
 export function isDebugMode(): boolean {
+  // #region agent log
+  const _debugResult =
+    process.env?.NODE_ENV === "development" ||
+    process.env?.[DEBUG_MODE_ENV] === "true" ||
+    process.env?.[DEBUG_MODE_SERVER] === "true";
+  fetch('http://127.0.0.1:7639/ingest/c4d30fcc-c6c4-4880-a50c-b9c970baa794',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'e25b46'},body:JSON.stringify({sessionId:'e25b46',location:'lib/debug.ts:isDebugMode',message:'isDebugMode called',data:{NODE_ENV:process.env?.NODE_ENV,DEBUG_MODE:process.env?.[DEBUG_MODE_SERVER],NEXT_PUBLIC_DEBUG_MODE:process.env?.[DEBUG_MODE_ENV],result:_debugResult},timestamp:Date.now(),hypothesisId:'H-A,H-B,H-D'})}).catch(()=>{});
+  // #endregion
   if (typeof process !== "undefined" && process.env?.NODE_ENV === "development") {
     return true;
   }
