@@ -6,6 +6,23 @@
 
 ---
 
+## 2025-03-06 — Режим отладки и сидирование
+
+### Наблюдения
+- На сервере и при `next start` режим отладки не включался: 403 «Debug mode disabled» на /api/debug/login и /api/debug/seed. NEXT_PUBLIC_DEBUG_MODE подставляется при сборке, после деплоя добавление переменной в .env не помогало.
+- Сидирование падало с 500 при отсутствии SUPABASE_SERVICE_ROLE_KEY.
+
+### Решения
+- В lib/debug.ts добавлена проверка process.env.DEBUG_MODE === "true" (серверная переменная, читается в рантайме). В ecosystem.config.cjs заданы NODE_ENV=development и DEBUG_MODE=true для PM2.
+- Запуск через `next dev` (ecosystem.config.cjs) вместо `next start`, чтобы режим отладки работал без пересборки.
+- GET /api/debug/status для диагностики (debug, NODE_ENV, DEBUG_MODE, NEXT_PUBLIC_DEBUG_MODE).
+- В /api/debug/seed используется getAdminClientOrNull(): при отсутствии ключа возвращаются сгенерированные заказы и seeded { orders: 45, leads: 0, audit: 0 }; при наличии ключа — запись в b2b_leads и audit_logs; при ошибке вставки — 200 и warning вместо 500.
+
+### Проблемы
+- Нет.
+
+---
+
 ## 2025-03-06 — A/B-тесты (5.3)
 
 ### Наблюдения
