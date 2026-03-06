@@ -4,6 +4,25 @@
 
 ---
 
+## [2025-03-06] — Режим отладки и сидирование
+
+### Добавлено
+- **DEBUG_MODE** (серверная env): включение режима отладки без пересборки (NEXT_PUBLIC_DEBUG_MODE остаётся для build-time).
+- **ecosystem.config.cjs**: PM2 с `next dev`, NODE_ENV=development, DEBUG_MODE=true.
+- **GET /api/debug/status**: диагностика (debug, NODE_ENV, DEBUG_MODE, NEXT_PUBLIC_DEBUG_MODE).
+- Сидирование без падения: при отсутствии SUPABASE_SERVICE_ROLE_KEY возвращаются сгенерированные заказы и нулевые счётчики leads/audit.
+
+### Изменено
+- **lib/debug.ts**: проверка process.env.DEBUG_MODE === "true" в isDebugMode().
+- **app/api/debug/seed/route.ts**: getAdminClientOrNull(), возврат orders в ответе; при ошибке вставки — 200 + warning вместо 500.
+- .env.local.example: комментарии про DEBUG_MODE и NEXT_PUBLIC_DEBUG_MODE.
+
+### Исправлено
+- 403 «Debug mode disabled» при DEBUG_MODE=true в PM2 (серверная переменная читается в рантайме).
+- 500 «Ошибка сидирования» при отсутствии service role ключа (сидирование не падает, отдаются тестовые заказы).
+
+---
+
 ## [2025-03-06] — A/B-тесты (5.3)
 
 ### Добавлено
