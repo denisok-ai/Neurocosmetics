@@ -8,12 +8,17 @@ import type { UserRole } from "@/lib/types";
 
 const DEBUG_COOKIE = "debug-role";
 const DEBUG_MODE_ENV = "NEXT_PUBLIC_DEBUG_MODE";
+/** Серверная переменная — читается в рантайме, без пересборки */
+const DEBUG_MODE_SERVER = "DEBUG_MODE";
 
 export function isDebugMode(): boolean {
   if (typeof process !== "undefined" && process.env?.NODE_ENV === "development") {
     return true;
   }
   if (typeof process !== "undefined" && process.env?.[DEBUG_MODE_ENV] === "true") {
+    return true;
+  }
+  if (typeof process !== "undefined" && process.env?.[DEBUG_MODE_SERVER] === "true") {
     return true;
   }
   return false;
