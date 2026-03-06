@@ -1,6 +1,7 @@
 /**
  * @file route.ts
  * @description API B2B-лидов: POST — создание заявки (Supabase), GET — список (только admin/manager)
+ * В режиме отладки GET возвращает сгенерированные тестовые лиды без Supabase.
  * @created 2025-03-06
  */
 
@@ -8,6 +9,8 @@ import { NextResponse } from "next/server";
 import { addB2BLeadToSupabase, getB2BLeadsFromSupabase } from "@/lib/api/b2b-leads";
 import { logAudit } from "@/lib/api/audit";
 import { createClient } from "@/lib/supabase/server";
+import { isDebugMode, getDebugRoleFromCookie } from "@/lib/debug";
+import { generateTestLeads } from "@/lib/data/test-data";
 
 export async function POST(req: Request) {
   try {
@@ -51,19 +54,14 @@ export async function POST(req: Request) {
 
 export async function GET(req: Request) {
   try {
-    const supabase = await createClient();
-
-    // Режим отладки: доступ по cookie
-    const { isDebugMode, getDebugRoleFromCookie } = await import("@/lib/debug");
-    if (isDebugMode()) {
-      const cookieHeader = req.headers.get("cookie");
-      const role = getDebugRoleFromCookie(cookieHeader);
-      if (role === "admin" || role === "manager") {
-        const list = await getB2BLeadsFromSupabase(supabase);
-        return NextResponse.json(list);
-      }
+    const cookieHeader = req.headers.get("cookie");
+    const debugRole = getDebugRoleFromCookie(cookieHeader);
+    if (isDebugMode() && (debugRole === "admin" || debugRole === "manager")) {
+      const list = generateTestLeads();
+      return NextResponse.json(list);
     }
 
+    const supabase = await createClient();
     const {
       data: { user },
     } = await supabase.auth.getUser();
