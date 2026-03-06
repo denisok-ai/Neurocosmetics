@@ -1,11 +1,14 @@
 /**
  * @file route.ts
  * @description API заказов: POST — создание, GET — список заказов текущего пользователя
+ * В режиме отладки GET возвращает сгенерированные тестовые заказы без Supabase.
  * @created 2025-03-06
  */
 
 import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
+import { isDebugMode, getDebugRoleFromCookie } from "@/lib/debug";
+import { generateTestOrders } from "@/lib/data/test-data";
 import type { OrderItem } from "@/lib/types";
 
 export async function POST(req: Request) {
@@ -65,6 +68,18 @@ export async function POST(req: Request) {
 
 export async function GET(req: Request) {
   try {
+    const cookieHeader = req.headers.get("cookie");
+    const debugRole = getDebugRoleFromCookie(cookieHeader);
+    if (isDebugMode() && debugRole) {
+      const { searchParams } = new URL(req.url);
+      const isManagerRequest = searchParams.get("scope") === "all";
+      if (isManagerRequest && debugRole !== "admin" && debugRole !== "manager") {
+        return NextResponse.json({ error: "Доступ запрещён" }, { status: 403 });
+      }
+      const orders = generateTestOrders();
+      return NextResponse.json(orders);
+    }
+
     const supabase = await createClient();
     const {
       data: { user },

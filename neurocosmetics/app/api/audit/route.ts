@@ -1,28 +1,28 @@
 /**
  * @file route.ts
  * @description GET /api/audit — список записей аудита (только admin)
+ * В режиме отладки возвращает сгенерированные тестовые записи без Supabase.
  * @created 2025-03-06
  */
 
 import { NextResponse } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { getAuditLogsFromSupabase } from "@/lib/api/audit";
+import { isDebugMode, getDebugRoleFromCookie } from "@/lib/debug";
+import { generateTestAudit } from "@/lib/data/test-data";
 
 export async function GET(req: Request) {
   try {
-    const supabase = await createClient();
-
-    // Режим отладки: доступ по cookie (только admin)
-    const { isDebugMode, getDebugRoleFromCookie } = await import("@/lib/debug");
-    if (isDebugMode()) {
-      const cookieHeader = req.headers.get("cookie");
-      if (getDebugRoleFromCookie(cookieHeader) === "admin") {
-        const { searchParams } = new URL(req.url);
-        const limit = Math.min(Number(searchParams.get("limit")) || 100, 500);
-        const list = await getAuditLogsFromSupabase(supabase, limit);
-        return NextResponse.json(list);
-      }
+    const cookieHeader = req.headers.get("cookie");
+    const debugRole = getDebugRoleFromCookie(cookieHeader);
+    if (isDebugMode() && debugRole === "admin") {
+      const { searchParams } = new URL(req.url);
+      const limit = Math.min(Number(searchParams.get("limit")) || 100, 500);
+      const list = generateTestAudit().slice(0, limit);
+      return NextResponse.json(list);
     }
+
+    const supabase = await createClient();
     const {
       data: { user },
     } = await supabase.auth.getUser();
